@@ -41,7 +41,7 @@ def place_word(grid, word, row, col, dr, dc):
 
 def fill_empty(grid):
     n = len(grid)
-    letters = string.ascii_uppercase
+    letters = string.ascii_lowercase
     for i in range(n):
         for j in range(n):
             if grid[i][j] == " ":
