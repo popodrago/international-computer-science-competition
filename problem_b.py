@@ -1,30 +1,18 @@
 import sys
 
 def cake_calculator(flour: int, sugar: int) -> list:
-   """
-   Calculates the maximum number of cakes that can be made and the leftover ingredients.
-   
-   Args:
-       flour: An integer larger than 0 specifying the amount of available flour.
-       sugar: An integer larger than 0 specifying the amount of available sugar.
-       
-   Returns:
-       A list of three integers: 
-       [0] the number of cakes that can be made
-       [1] the amount of leftover flour
-       [2] the amount of leftover sugar
-       
-   Raises:
-       ValueError: If inputs flour or sugar are not positive.
-   """
+
    # WRITE YOUR CODE HERE
    left_flour = 0
    left_sugar = 0
    cakes = 0
    if flour>0 and sugar>0 :
-      n_cake_flour = flour//100
-      n_cake_sugar = sugar//50
+      n_cake_flour = flour//100 # max cakes with the flour
+      n_cake_sugar = sugar//50  # max cakes with the sugar
+      # the number of cakes is the minimum of the two
       cakes = min(n_cake_flour,n_cake_sugar)
+      # we calculate the left over engridients by calculating the total minus the used
+      # ingredients for the cakes
       left_flour = flour - 100 * cakes
       left_sugar = sugar - 50 *cakes
    return [cakes,left_flour,left_sugar]

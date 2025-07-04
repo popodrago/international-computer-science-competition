@@ -17,11 +17,8 @@ def create_crossword(words: list) -> list:
 def create_empty_grid():
     return [[" " for _ in range(10)] for _ in range(10)]
 
-def print_grid(grid):
-    for row in grid:
-        print(" ".join(row))
-    print()
-
+# Function checkc if a word can be placed at the specified position in the grid
+# with the specified direction (dr, dc).
 def can_place(grid, word, row, col, dr, dc):
     n = len(grid)
     for i in range(len(word)):
@@ -33,12 +30,14 @@ def can_place(grid, word, row, col, dr, dc):
             return False
     return True
 
+# Function places a word in the grid at the specified position and direction.
 def place_word(grid, word, row, col, dr, dc):
     for i in range(len(word)):
         r = row + dr * i
         c = col + dc * i
         grid[r][c] = word[i]
 
+# Function fills empty spaces in the grid with random letters.
 def fill_empty(grid):
     n = len(grid)
     letters = string.ascii_lowercase
@@ -47,16 +46,17 @@ def fill_empty(grid):
             if grid[i][j] == " ":
                 grid[i][j] = random.choice(letters)
 
+# Function to create a crossword puzzle with the given words.
 def create_crossword(words):
     directions = [
-        (0, 1),    # horizontal
-        (1, 0),    # vertical
-        (1, 1),
-        (0, -1),   # horizontal reverse
-        (-1, 0),   # vertical reverse
-        (-1, -1),  # diagonal reverse
-        (1, -1),   # diagonal
-        (-1, 1),   # diagonal reverse
+        (0, 1),    # right direction
+        (1, 0),    # down  
+        (1, 1),    # down-rigth
+        (0, -1),   # left
+        (-1, 0),   # up
+        (-1, -1),  # up-left
+        (1, -1),   # down-left
+        (-1, 1),   # up-right
         ]
     grid = create_empty_grid()
     for word in words:
@@ -69,13 +69,9 @@ def create_crossword(words):
                 place_word(grid, word, row, col, dr, dc)
                 placed = True
                 break
-        if not placed:
-            print(f"Could not place word: {word}")
+      
     fill_empty(grid)
     return grid
-
-# Example usage
-
 
 # --- Main execution block. DO NOT MODIFY.  ---
 if __name__ == "__main__":
